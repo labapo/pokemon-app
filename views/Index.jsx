@@ -1,6 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+const myStyle = {
+    color: '#ffffff',
+    backgroundColor: '#000000',
+  };
+
 function Index ({pokemon}) {
 
     return (
