@@ -5,6 +5,8 @@ const app = express();
 ///////Other requires
 const pokemon = require('./models/pokemon');
 
+
+///MiddleWare
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
@@ -24,7 +26,8 @@ app.get('/pokemon', (req, res) => {
 app.get('/pokemon/:id', (req, res) => {
     //res.send(req.params.id);
     res.render('Show', {
-        pokemon: pokemon[req.params.id]
+        pokemon: pokemon[req.params.id] //1st pokemon is what you're going to call it, 2nd is for a single pokemon
+        //use brackets to indicate the index so that it's dynamic
     })
 })
 

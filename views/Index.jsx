@@ -1,27 +1,27 @@
-import React from 'react';
-import { render } from 'react-dom';
+import React, { Component } from 'react'
 
-const myStyle = {
-    color: '#ffffff',
-    backgroundColor: '#000000',
-  };
-
-function Index ({pokemon}) {
-
-    return (
-    <div><h1>See All The Pokemons!</h1>
-    <ul>
-            {pokemon.map((pokemon, i) =>{
-                return (
-                    <li><a href={`/pokemon/${i}`}>
-                    {pokemon.name.charAt(0).toUpperCase()}{pokemon.name.slice(1)} </a></li>
-                )
-            })
-        }
-    </ul>
-    </div>
-  )
+const headerStyle = {
+  backgroundColor: 'black'
 }
 
-export default Index;
-
+export default class Index extends Component {
+  
+  render() {
+    console.log(this.props.pokemon)
+    const pokemon = this.props.pokemon
+    return (
+      <div>
+        <h1 style={headerStyle}>See All The Pokemons!</h1>
+      <ul>
+              {pokemon.map((pokemon, id) =>{
+                  return (
+                      <li><a href={`/pokemon/${id}`}>
+                      {pokemon.name.charAt(0).toUpperCase()}{pokemon.name.slice(1)} </a></li>
+                  )
+              })
+          }
+      </ul>
+      </div>
+    )
+  }
+}
