@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 const headerStyle = {
+  color: 'rgb(240, 240, 240)',
   backgroundColor: 'black'
 }
 
@@ -13,9 +14,14 @@ export default class Index extends Component {
       <div>
         <h1 style={headerStyle}>See All The Pokemons!</h1>
       <ul>
+        <nav>
+          <a href="pokemon/new">
+            <button>Add Pokemon</button>
+            </a>
+        </nav>
               {pokemon.map((pokemon, id) =>{
                   return (
-                      <li><a href={`/pokemon/${id}`}>
+                      <li key={id}><a href={`/pokemon/${id}`}>
                       {pokemon.name.charAt(0).toUpperCase()}{pokemon.name.slice(1)} </a></li>
                   )
               })
@@ -25,3 +31,5 @@ export default class Index extends Component {
     )
   }
 }
+
+module.exports = Index;
