@@ -13,7 +13,7 @@ const indexStyle = {
   };
 
   const imgBorder = {
-    borderWidth: '3px solid black',
+    border: '3px solid black',
   }
 
 function Show ({pokemon}) {

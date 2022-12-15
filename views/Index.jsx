@@ -12,24 +12,30 @@ export default class Index extends Component {
     const pokemon = this.props.pokemon
     return (
       <div>
-        <h1 style={headerStyle}>See All The Pokemons!</h1>
-      <ul>
-        <nav>
-          <a href="pokemon/new">
-            <button>Add Pokemon</button>
-            </a>
-        </nav>
-              {pokemon.map((pokemon, id) =>{
-                  return (
-                      <li key={id}><a href={`/pokemon/${id}`}>
-                      {pokemon.name.charAt(0).toUpperCase()}{pokemon.name.slice(1)} </a></li>
-                  )
-              })
-          }
-      </ul>
+        <h1 style={headerStyle}> See all the Pokemon! </h1>
+        <body>
+          <nav>
+            {" "}
+            <a href="/pokemon/new"> Create a new Pokemon!</a>
+          </nav>
+          <ul>
+            {pokemon.map((pokemon, i) => {
+              return (
+                <li key={i}>
+                  <a href={`/pokemon/${pokemon.id}`} >
+                    {/* {pokemon.name.charAt(0).toUpperCase()}
+                    {pokemon.name.slice(1)} */}
+                    {pokemon.name}
+                  </a>
+
+                </li>
+              );
+            })}
+          </ul>
+        </body>
       </div>
-    )
+    );
   }
 }
 
-module.exports = Index;
+module.exports = Index; 

@@ -9,8 +9,8 @@ const pokemonSchema = new mongoose.Schema({
         required: true}
     })
 
-    //make pokemon model
-    const Pokemon = mongoose.model('Pokemon', pokemonSchema);
+//make pokemon model
+const Pokemon = mongoose.model('Pokemon', pokemonSchema);
 
 
 // const pokemon = [

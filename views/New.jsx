@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-function New() {
-  return (
-    <div>
-        <h1>Create New Pokemon</h1>
+export default class New extends Component {
+  render() {
+    return (
+      <div>
+        <h1>New Pokemon Form</h1>
         <form action="/pokemon" method="post">
-        Name: <input type="text" name="name" /><br />
-        Image URL: <input type="text" name="img" id="" /><br />
-        <input type="submit" value="Create Pokemon" />
-        <a href="/pokemon">Cancel</a>
+          Name: <input type="text" name="name" /> <br />
+          Image: <input type="file" name="img" /> <br />
+          <input type="submit" value="Create Pokemon" />
+          <a href="/pokemon">Cancel</a>
         </form>
-    </div>
-  )
+      </div>
+    )
+  }
 }
-
-export default New;

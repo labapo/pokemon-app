@@ -16,7 +16,7 @@ const CONFIG = {
 
 /// Establish connection with mongo
 // Establish Connection
-mongoose.connect(MONGO_URI, CONFIG);
+//mongoose.connect(MONGO_URI, CONFIG);
 
 //CONNECT TO MONGOOSE / REMOVE DEPRICATION WARNINGS
 mongoose.set('strictQuery', true);
@@ -53,6 +53,9 @@ app.use(express.urlencoded({extended:false}));//makes sure that you can get insi
 
 //index
 app.get('/pokemon', (req, res) => {
+    //find all pokemon using the find method.
+    //Pokemon is the name of the model
+    //empty curly will bring all of the documents
     Pokemon.find({}, (error, allPokemon) =>{
         res.render('Index', {pokemon: allPokemon})
     })
@@ -60,34 +63,26 @@ app.get('/pokemon', (req, res) => {
 });
 
 //new
-app.get('/pokemon/new', (req, res) =>{
+app.get('/pokemon/new', (req, res) =>{// get request because you're getting the form
     res.render('New')
 });
 
+//post route = create
+app.post('/pokemon', (req, res) => {
+    //create new pokemon
+    //req body is coming from from 
+    Pokemon.create(req.body, (error, createdPokemon)=> {
+        res.redirect('/pokemon')
+    });
+    });
 
 //Show - individual pokemon
 app.get('/pokemon/:id', (req, res) => {
     //res.send(req.params.id);
-    Pokemon.findById(req.params.id, (error, foundPokemon)=>{
-        res.render('Show', {pokemon: foundPokemon})
-    })
-        //use brackets to indicate the index so that it's dynamic
-    })
-
-//post route = create
-app.post('/pokemon', (req, res) => {
-//create new pokemon
-Pokemon.create(req.body, (error, createdPokemon)=> {
-    res.redirect('/pokemon')
-});
-});
-
-
-
-
-
-
-
+    Pokemon.findById(req.params.id, (err, foundPokemon)=>{
+        res.render('Show', {pokemon: foundPokemon});
+    });
+    });
 
 //Set up port//
 app.listen(3000, function () {
