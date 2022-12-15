@@ -13,6 +13,7 @@ const CONFIG = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };// get rid of warnings
+const methodOverride = require('method-override');
 
 /// Establish connection with mongo
 // Establish Connection
@@ -41,7 +42,7 @@ app.use((req, res, next) => {
     console.log('I run for all routes');
     next();
 });
-
+app.use(methodOverride('_method'));
 //near the top, around other app.use() calls
 app.use(express.urlencoded({extended:false}));//makes sure that you can get inside of the object and so that its not undefined
 
@@ -83,7 +84,34 @@ app.get('/pokemon/:id', (req, res) => {
         res.render('Show', {pokemon: foundPokemon});
     });
     });
+//edit
+app.get('/pokemon/:id/edit', (req, res) =>{
+    if (!err){
+        res.render('Edit',
+        {
+            pokemon: foundPokemon
+        } 
+        );
+    } else {
+        res.send({msg: err.message})
+    }
+});
 
+////update
+app.put('pokemon/:id', (req, res) => {
+    Pokemon.findByIdAndUpdate(req.params.id, req.body, (err, updatedPokemon) =>{
+        console.log(updatedPokemon)
+        res.redirect(`/pokemon/${req.params.id}`);
+    });
+});
+
+
+//destroy or delete
+app.delete('/pokemon/:id', (req, res) => {
+    Pokemon.findByIdAndRemove(req.params.id, (err, foundPokemon)=>{
+        res.redirect('/pokemon'); //redirect to the pokemon index
+    })
+})
 //Set up port//
 app.listen(3000, function () {
     console.log('Listening on port 3000')

@@ -23,10 +23,17 @@ export default class Index extends Component {
               return (
                 <li key={i}>
                   <a href={`/pokemon/${pokemon.id}`} >
-                    {/* {pokemon.name.charAt(0).toUpperCase()}
-                    {pokemon.name.slice(1)} */}
-                    {pokemon.name}
-                  </a>
+                    {pokemon.name.charAt(0).toUpperCase()}
+                    {pokemon.name.slice(1)}</a>
+                  <form action = 
+                  {`/pokemon/${pokemon._id}?_method=DELETE`} method="POST">
+                    <input type="submit" value="Delete" />
+                    </form>
+                  <form action={`/pokemon/${pokemon._id}/edit`}>
+                    <input type="submit" value="Edit" />
+                  </form>
+
+                  
 
                 </li>
               );
