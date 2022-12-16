@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-const indexStyle = {
+const bodyStyle = {
     borderStyle: "ridge", 
     borderWidth: "10px",
     borderRadius: '10px',
@@ -21,7 +21,7 @@ function Show ({pokemon}) {
     return (
       <div>
       <html style={{height:'100%'}} />
-        <body style={indexStyle}>
+        <body style={bodyStyle}>
       <h1>Gotta Catch 'Em All</h1>
         <h2>Gotta Catch: {pokemon.name.charAt(0).toUpperCase()}{pokemon.name.slice(1)} </h2>
         <img style = {imgBorder} src={`${pokemon.img}.jpg`} alt={`${pokemon.name}`} />

@@ -46,7 +46,6 @@ app.use(methodOverride('_method'));
 //near the top, around other app.use() calls
 app.use(express.urlencoded({extended:false}));//makes sure that you can get inside of the object and so that its not undefined
 
-
 ////////////////////////// Routes /////////////////////////////////
 // app.get('/', (req, res) => {
 //     res.send('Welcome to the Pokemon App!');
@@ -86,20 +85,16 @@ app.get('/pokemon/:id', (req, res) => {
     });
 //edit
 app.get('/pokemon/:id/edit', (req, res) =>{
-    if (!err){
-        res.render('Edit',
-        {
+    Pokemon.findById(req.params.id, (err, foundPokemon)=>{
+        res.render('Edit', {
             pokemon: foundPokemon
-        } 
-        );
-    } else {
-        res.send({msg: err.message})
-    }
-});
-
+        })
+    })
+})
+       
 ////update
-app.put('pokemon/:id', (req, res) => {
-    Pokemon.findByIdAndUpdate(req.params.id, req.body, (err, updatedPokemon) =>{
+app.put('/pokemon/:id', (req, res) => {
+    Pokemon.findByIdAndUpdate(req.params._id, req.body, (err, updatedPokemon) =>{
         console.log(updatedPokemon)
         res.redirect(`/pokemon/${req.params.id}`);
     });

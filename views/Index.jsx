@@ -1,8 +1,22 @@
 import React, { Component } from 'react'
 
 const headerStyle = {
-  color: 'rgb(240, 240, 240)',
-  backgroundColor: 'black'
+  color: 'rgb(240, 240, 240)'
+}
+
+const bodyStyle = {
+  borderStyle: "ridge", 
+  borderWidth: "10px",
+  borderRadius: '10px',
+  fontSize: '30px',
+  color: "white",
+  backgroundColor: '#6F7A90',
+  textAlign: "left",
+  dropShadow: '16px 16px 10px black',
+};
+
+const imgBorder = {
+  border: '3px solid black',
 }
 
 export default class Index extends Component {
@@ -13,7 +27,7 @@ export default class Index extends Component {
     return (
       <div>
         <h1 style={headerStyle}> See all the Pokemon! </h1>
-        <body>
+        <body style={bodyStyle}>
           <nav>
             {" "}
             <a href="/pokemon/new"> Create a new Pokemon!</a>
